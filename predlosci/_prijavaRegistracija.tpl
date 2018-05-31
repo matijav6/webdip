@@ -12,7 +12,7 @@
         <input type="password" id="lozinka1" name="lozinka" placeholder="lozinka">
         <label for="lozinka2">Ponovi pozinku: </label>
         <input type="password" id="lozinka2" name="lozinka2" placeholder="lozinka">                       
-        <div class="g-recaptcha" data-sitekey="6Lcfm1sUAAAAAAXk1t76L8rMWopJ1xxtlHzLBIxW"></div>
+        <div class="g-recaptcha" data-sitekey="6LerT1wUAAAAABCMwLf1ujFhGgjSnqwc58_PFP0l"></div>
         <button type="submit" id="submitBtn" name="submitReg" value="Registriraj se">Registriraj se</button>
     </p>
 </form>
@@ -23,7 +23,8 @@
         <label for="lozinka">Lozinka: </label>
         <input type="password" id="lozinka" name="lozinka" placeholder="lozinka">
         <input type="checkbox" name="zapamtiMe" value="1"> Upamti korisničko ime                        
-        <input type="reset" class="submit" value=" Inicijaliziraj "> 
+        <input type="reset" class="submit" value=" Inicijaliziraj ">         
         <input type="submit" class="submit" name="submitLog" value="Prijavi se">
+        <a href="resetLozinke.php" style="grid-column-start: 2;">Zaboravljena lozinka</a>
     </p>                        
 </form>

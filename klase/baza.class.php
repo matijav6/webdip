@@ -31,7 +31,7 @@ class Baza {
     }
 
     function selectDB($upit) {
-        $rezultat = $this->veza->query($upit);
+        $rezultat = $this->veza->query($upit);         
         if ($this->veza->connect_errno) {
             echo "Greška kod upita: {$upit} - " . $this->veza->connect_errno . ", " .
             $this->veza->connect_error;
@@ -43,19 +43,20 @@ class Baza {
         return $rezultat;
     }
 
-    function updateDB($upit, $skripta = '') {        
-        $rezultat = $this->veza->query($upit);
-        if ($this->veza->connect_errno) {
-            echo "Greška kod upita: {$upit} - " . $this->veza->connect_errno . ", " .
+    function updateDB($upit, $skripta = '') {                       
+        $rezultat = $this->veza->query($upit);  
+                
+        if (isset($this->veza->error) && $this->veza->error != null) {
+            //echo "Greška kod upita: {$upit} - " . $this->veza->connect_errno . ", " .
             $this->veza->connect_error;
             $this->greska = $this->veza->connect_error;
+            $err = ($this->veza->error);
+            return $err;
         } else {
-            if ($skripta != '') {
-                $this->veza->close();
+            if ($skripta != '') {                
                 header("Location: $skripta");
             }
-        }
-
+        }    
         return $rezultat;
     }
     

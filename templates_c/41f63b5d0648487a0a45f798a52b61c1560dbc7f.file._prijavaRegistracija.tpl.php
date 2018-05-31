@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2018-05-26 14:59:09
+<?php /* Smarty version Smarty-3.1.18, created on 2018-05-31 11:36:27
          compiled from "predlosci\_prijavaRegistracija.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:85065b095a1d4c5be6-79839448%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '41f63b5d0648487a0a45f798a52b61c1560dbc7f' => 
     array (
       0 => 'predlosci\\_prijavaRegistracija.tpl',
-      1 => 1527337154,
+      1 => 1527759386,
       2 => 'file',
     ),
   ),
@@ -15,13 +15,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_5b095a1d537161_22576376',
   'variables' => 
   array (
     'mod' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5b095a1d537161_22576376',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5b095a1d537161_22576376')) {function content_5b095a1d537161_22576376($_smarty_tpl) {?><form id="registracija" class="form prijavaRegistracija" method="POST" name="formRegistracija" novalidate style="display:<?php if ($_smarty_tpl->tpl_vars['mod']->value=='log') {?>none;<?php } else { ?> grid; <?php }?>">
     <p>
@@ -37,7 +37,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <input type="password" id="lozinka1" name="lozinka" placeholder="lozinka">
         <label for="lozinka2">Ponovi pozinku: </label>
         <input type="password" id="lozinka2" name="lozinka2" placeholder="lozinka">                       
-        <div class="g-recaptcha" data-sitekey="6Lcfm1sUAAAAAAXk1t76L8rMWopJ1xxtlHzLBIxW"></div>
+        <div class="g-recaptcha" data-sitekey="6LerT1wUAAAAABCMwLf1ujFhGgjSnqwc58_PFP0l"></div>
         <button type="submit" id="submitBtn" name="submitReg" value="Registriraj se">Registriraj se</button>
     </p>
 </form>
@@ -48,7 +48,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <label for="lozinka">Lozinka: </label>
         <input type="password" id="lozinka" name="lozinka" placeholder="lozinka">
         <input type="checkbox" name="zapamtiMe" value="1"> Upamti korisničko ime                        
-        <input type="reset" class="submit" value=" Inicijaliziraj "> 
+        <input type="reset" class="submit" value=" Inicijaliziraj ">         
         <input type="submit" class="submit" name="submitLog" value="Prijavi se">
+        <a href="resetLozinke.php" style="grid-column-start: 2;">Zaboravljena lozinka</a>
     </p>                        
 </form><?php }} ?>

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2018-05-27 15:22:46
+<?php /* Smarty version Smarty-3.1.18, created on 2018-05-31 13:06:17
          compiled from "predlosci\_header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:142875b095a1b7536c8-90442926%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'aa320a8c45d783bb42675e4fadb94eed6ccb63e5' => 
     array (
       0 => 'predlosci\\_header.tpl',
-      1 => 1527427364,
+      1 => 1527764774,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   array (
     'tab_naslov' => 0,
     'naslov' => 0,
-    'vrijeme' => 0,
     'h2_naslov' => 0,
   ),
   'has_nocache_code' => false,
@@ -37,10 +36,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <meta name="description" content="Zadaća WebDiP" />
         <meta name="date" content="12.03.2018." />
         <meta name="author" content="Matija Vuk" />        
-        <link href="css/mvuk.css" rel="stylesheet" type="text/css" />
-        <link href="css/mvuk_prilagodbe.css" rel="stylesheet" type="text/css" />    
+        <link href="css/mvuk.css" rel="stylesheet" type="text/css" />        
+        
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-  
+        <script src='https://www.google.com/recaptcha/api.js'></script>  
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>               
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>     
+        
+        <script type="text/javascript" src="js/mvuk_jquery.js"></script>
+        <link href="css/mvuk_prilagodbe.css" rel="stylesheet" type="text/css" /> 
     </head>
     <body>     
         <div class="glavniBlok">
@@ -55,9 +61,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     <?php }?>                    
                 </div>
                 <div class="box3" style="margin-right: 30px;">
-                    <p><?php ob_start();?><?php echo $_smarty_tpl->tpl_vars['vrijeme']->value;?>
-<?php $_tmp2=ob_get_clean();?><?php echo $_tmp2;?>
-</p>
+                    <p id="virtualnoVrijeme"></p></br>                    
+                    <?php if (isset($_SESSION['korime'])) {?>
+                        <p>Dobro došao: <?php echo $_SESSION['korime'];?>
+</p></br>
+                    <?php }?>
                     <div>
                         <?php if (!isset($_SESSION['korime'])) {?>
                             <a href="prijavaRegistracija.php?mod=log">Prijava</a>
@@ -103,10 +111,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     <div class="dropdownMenu">
                         <li><a href="#">Natječaji</a></li>
                          <div class="dropdownLink">
-                            <a href="#">Prijava na natječaj</a>
-                            <?php if (isset($_SESSION['uloga'])&&$_SESSION['uloga']=='admin') {?>
-                                <a href="#">Kategorije natječaja</a>
-                            <?php }?>
+                            <a href="#">Prijava na natječaj</a>                            
+                                <a href="kategorijaNatjecaj.php">Kategorije natječaja</a>
                             <?php if (isset($_SESSION['uloga'])&&($_SESSION['uloga']=='moderator'||$_SESSION['uloga']=='admin')) {?>
                                 <a href="#">Popis prijava za natječaj</a>
                                 <a href="#">Kreiranja natječaja</a>
@@ -120,6 +126,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                             <div class="dropdownLink">
                                 <a href="#">Pozicije oglasa</a>
                                 <a href="#">Dnevnik rada</a>
+                                <a href="postaviVrijeme.php">Postavi vrijeme</a>
+                                <a href="vrijeme.php">Preuzmi vrijeme</a>
                             </div>
                         </div>
                     <?php }?> 

@@ -7,8 +7,8 @@ body {
 .glavniBlok {
     background: rgba(0, 0, 0, 0.34);
     color: white;
-    width: 100vw;
-    max-width: 1000px;    
+    width: 70vw;
+    max-width: 99%;    
     padding: 10px;
     margin: auto;
     box-shadow: 0px 0px 20px 5px #888888;
@@ -16,7 +16,7 @@ body {
 header {
     display: grid;
     grid-template-columns: auto auto auto;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
 }
 header > div.box1 {
     height: 80px;
@@ -166,10 +166,10 @@ ol {
     text-align: left;
 }
 .CRUDTablice{
-    display: inline-block;
+    display: block;
     overflow-x: scroll;
-    overflow-y: scroll;
-    max-width: 100%;
+    max-width: -webkit-fill-available;
+    margin: 0 auto;
 }
 td > button >i {    
     padding: 0px 2px 0px 2px;    
@@ -189,4 +189,50 @@ td > button >i {
 }
 .actionForm{
     display: inline-block;
+    text-align: left;
+}
+#showTable{
+    display: grid;    
+    grid-template-columns: auto auto;
+}
+.btn-unos{
+        padding: 5px;
+    border: 1px solid;
+    border-radius: 15px;
+    margin-left: 10px;
+}
+
+
+@media (max-width: 420px){
+    header, .reklame{
+        grid-template-columns: auto !important;
+    }
+    .glavniBlok{
+        width: fit-content;
+        margin-left: 2px;
+        margin-right: 2px;
+        padding: 0;
+    }
+    .rek1, .rek2{
+        text-align: center !important;
+    }
+    ul{
+        grid-template-columns: auto !important;
+        grid-gap: 20px;
+    }
+    #showTable{
+        grid-template-columns: auto !important;
+    }
+}
+@media (max-width: 640px){
+     header, .reklame{
+        grid-template-columns: auto !important;
+    }
+    .rek1, .rek2{
+        text-align: center !important;
+    }
+    ul{
+        grid-template-columns: auto !important;        
+        grid-gap: 20px;
+    }
 }

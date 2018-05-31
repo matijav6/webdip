@@ -10,17 +10,19 @@ class virtualnoVrijeme {
     }
     
     function vratiVrijeme(){
-        self::$citac->open(self::$datoteka);
-	$pomak="Pomak je: ";      	  
-        while(self::$citac->read() ) {
-	print_r(self::$citac->name);
-          if( 'brojSati' === self::$citac->name ) {
-			self::$citac->read();
-                    $pomak = self::$citac->value;
-		    break;
-                }
+       
+       self::$citac->open(self::$datoteka);
+
+       while(self::$citac->read() ) {	   
+            if( 'brojSati' === self::$citac->name ) {
+			    self::$citac->read();
+                $pomak = self::$citac->value;
+		        break;
+            }
         }        
         return $pomak;
     }
+
+
 }
 ?>

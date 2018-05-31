@@ -7,10 +7,17 @@
         <meta name="description" content="Zadaća WebDiP" />
         <meta name="date" content="12.03.2018." />
         <meta name="author" content="Matija Vuk" />        
-        <link href="css/mvuk.css" rel="stylesheet" type="text/css" />
-        <link href="css/mvuk_prilagodbe.css" rel="stylesheet" type="text/css" />    
+        <link href="css/mvuk.css" rel="stylesheet" type="text/css" />        
+        
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-  
+        <script src='https://www.google.com/recaptcha/api.js'></script>  
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>               
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>     
+        
+        <script type="text/javascript" src="js/mvuk_jquery.js"></script>
+        <link href="css/mvuk_prilagodbe.css" rel="stylesheet" type="text/css" /> 
     </head>
     <body>     
         <div class="glavniBlok">
@@ -24,7 +31,10 @@
                     {/if}                    
                 </div>
                 <div class="box3" style="margin-right: 30px;">
-                    <p>{{$vrijeme}}</p>
+                    <p id="virtualnoVrijeme"></p></br>                    
+                    {if isset($smarty.session.korime)}
+                        <p>Dobro došao: {$smarty.session.korime}</p></br>
+                    {/if}
                     <div>
                         {if !isset($smarty.session.korime)}
                             <a href="prijavaRegistracija.php?mod=log">Prijava</a>
@@ -70,10 +80,8 @@
                     <div class="dropdownMenu">
                         <li><a href="#">Natječaji</a></li>
                          <div class="dropdownLink">
-                            <a href="#">Prijava na natječaj</a>
-                            {if isset($smarty.session.uloga) && $smarty.session.uloga == 'admin'}
-                                <a href="#">Kategorije natječaja</a>
-                            {/if}
+                            <a href="#">Prijava na natječaj</a>                            
+                                <a href="kategorijaNatjecaj.php">Kategorije natječaja</a>
                             {if isset($smarty.session.uloga) && ($smarty.session.uloga == 'moderator' || $smarty.session.uloga == 'admin')}
                                 <a href="#">Popis prijava za natječaj</a>
                                 <a href="#">Kreiranja natječaja</a>
@@ -87,6 +95,8 @@
                             <div class="dropdownLink">
                                 <a href="#">Pozicije oglasa</a>
                                 <a href="#">Dnevnik rada</a>
+                                <a href="postaviVrijeme.php">Postavi vrijeme</a>
+                                <a href="vrijeme.php">Preuzmi vrijeme</a>
                             </div>
                         </div>
                     {/if} 
