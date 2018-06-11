@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2018-05-31 18:42:09
+<?php /* Smarty version Smarty-3.1.18, created on 2018-06-10 14:28:09
          compiled from "predlosci\_tablica.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:200205b0ec5548118f8-60086094%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '9087bd67b8f8eef7861acb4ada090d3f74683ad5' => 
     array (
       0 => 'predlosci\\_tablica.tpl',
-      1 => 1527784920,
+      1 => 1528633686,
       2 => 'file',
     ),
   ),
@@ -23,6 +23,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'imeTablice' => 0,
     'stupci' => 0,
     'foo' => 0,
+    'x' => 0,
     'i' => 0,
     'red' => 0,
   ),
@@ -30,18 +31,42 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5b0ec5548790a8_96159432')) {function content_5b0ec5548790a8_96159432($_smarty_tpl) {?>
 <?php if (isset($_smarty_tpl->tpl_vars['tablica']->value)) {?>		
-	<table border="1" class="CRUDTablice">
+	<form style="margin-bottom: 10px;">
+		<input type="text" name="index" id="index" placeholder="index stupca" size="8">
+		<input type="text" name="pretrazi" id="pretrazi" onkeyup="pretrazivanje();" placeholder="kriterij">		
+	</form>
+	<div class="paginacijaGumb">
+		<button class="btn-default btn-unos" onclick="paginacija();">Prikaži paginaciju</button>
+		<input type="hidden" name="trenutnaStrana" id="trenutnaStrana" value="">
+	</div>
+	<table border="1" class="CRUDTablice" id="crudTablica">
 	    <caption>Tablica: <?php echo $_smarty_tpl->tpl_vars['imeTablice']->value;?>
 </caption>                                    
 	    <thead>
-	    	<tr>
+	    	<tr id="header">
+	    		<?php $_smarty_tpl->tpl_vars['x'] = new Smarty_variable(0, null, 0);?>
 	    		<?php  $_smarty_tpl->tpl_vars['foo'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['foo']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['stupci']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['foo']->key => $_smarty_tpl->tpl_vars['foo']->value) {
 $_smarty_tpl->tpl_vars['foo']->_loop = true;
-?>
-	    			<th><?php echo $_smarty_tpl->tpl_vars['foo']->value;?>
-</th>
+?>	    			
+	    			<th>
+	    				<div>
+	    					<label>
+	    						<?php echo $_smarty_tpl->tpl_vars['foo']->value;?>
+	    					
+	    						index: <?php echo $_smarty_tpl->tpl_vars['x']->value;?>
+	    				
+	    					</label>
+	    					<div class="sort">
+			    				<button onclick="sortUzlazno(this.value);" value="<?php echo $_smarty_tpl->tpl_vars['x']->value;?>
+"><</button>
+			    				<button onclick="sortSilazno(this.value);" value="<?php echo $_smarty_tpl->tpl_vars['x']->value++;?>
+">></button>
+			    			</div>
+						</div>
+	    			</th>
+
 				<?php } ?> 
 				<th>Operacije</th> 
 	    	</tr>
@@ -53,14 +78,15 @@ $_smarty_tpl->tpl_vars['foo']->_loop = true;
  $_from = $_smarty_tpl->tpl_vars['stupci']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['foo']->key => $_smarty_tpl->tpl_vars['foo']->value) {
 $_smarty_tpl->tpl_vars['foo']->_loop = true;
-?>
+?>	            	
 	    			<td name="<?php echo $_smarty_tpl->tpl_vars['stupci']->value[$_smarty_tpl->tpl_vars['i']->value];?>
+" value="<?php echo $_smarty_tpl->tpl_vars['red']->value[$_smarty_tpl->tpl_vars['stupci']->value[$_smarty_tpl->tpl_vars['i']->value]];?>
 ">		    				
 	    				<?php echo $_smarty_tpl->tpl_vars['red']->value[$_smarty_tpl->tpl_vars['stupci']->value[$_smarty_tpl->tpl_vars['i']->value++]];?>
 
 	    			</td>
 				<?php } ?>	 
-					<td>		
+					<td>								
 					<?php if (isset($_SESSION['uloga'])&&$_SESSION['uloga']=='admin') {?>	
 						<form class="actionForm" method="post" action="azurirajTablicu.php">
 							<input type="hidden" name="imeTablice" value="<?php echo $_smarty_tpl->tpl_vars['imeTablice']->value;?>
@@ -96,8 +122,9 @@ $_smarty_tpl->tpl_vars['foo']->_loop = true;
 	            </tr>
 	      	<?php }?>    
 	</table>  			  
-<?php }?>
+<div id="paginacija"></div>
 
+<?php }?>
 <?php if ((isset($_SESSION['uloga'])&&$_SESSION['uloga']=='admin')||(isset($_SESSION['uloga'])&&$_SESSION['uloga']=='moderator'&&$_smarty_tpl->tpl_vars['imeTablice']->value=='natjecaj')) {?>
 <form class="actionForm" method="post" action="dodajUTablicu.php">
 	<input type="hidden" name="imeTablice" value="<?php echo $_smarty_tpl->tpl_vars['imeTablice']->value;?>

@@ -1,11 +1,32 @@
 
 {if isset($tablica)}		
-	<table border="1" class="CRUDTablice">
+	<form style="margin-bottom: 10px;">
+		<input type="text" name="index" id="index" placeholder="index stupca" size="8">
+		<input type="text" name="pretrazi" id="pretrazi" onkeyup="pretrazivanje();" placeholder="kriterij">		
+	</form>
+	<div class="paginacijaGumb">
+		<button class="btn-default btn-unos" onclick="paginacija();">Prikaži paginaciju</button>
+		<input type="hidden" name="trenutnaStrana" id="trenutnaStrana" value="">
+	</div>
+	<table border="1" class="CRUDTablice" id="crudTablica">
 	    <caption>Tablica: {$imeTablice}</caption>                                    
 	    <thead>
-	    	<tr>
-	    		{foreach from=$stupci item=foo}
-	    			<th>{$foo}</th>
+	    	<tr id="header">
+	    		{$x=0}
+	    		{foreach from=$stupci item=foo}	    			
+	    			<th>
+	    				<div>
+	    					<label>
+	    						{$foo}	    					
+	    						index: {$x}	    				
+	    					</label>
+	    					<div class="sort">
+			    				<button onclick="sortUzlazno(this.value);" value="{$x}"><</button>
+			    				<button onclick="sortSilazno(this.value);" value="{$x++}">></button>
+			    			</div>
+						</div>
+	    			</th>
+
 				{/foreach} 
 				<th>Operacije</th> 
 	    	</tr>
@@ -13,12 +34,12 @@
 	        {while ($red = mysqli_fetch_array($tablica))}
 	        {$i = 0}          
 	            <tr>          
-	            {foreach from=$stupci item=foo}
-	    			<td name="{$stupci[$i]}">		    				
+	            {foreach from=$stupci item=foo}	            	
+	    			<td name="{$stupci[$i]}" value="{$red[$stupci[$i]]}">		    				
 	    				{$red[$stupci[$i++]]}
 	    			</td>
 				{/foreach}	 
-					<td>		
+					<td>								
 					{if isset($smarty.session.uloga) && $smarty.session.uloga == 'admin'}	
 						<form class="actionForm" method="post" action="azurirajTablicu.php">
 							<input type="hidden" name="imeTablice" value="{$imeTablice}">										
@@ -45,8 +66,9 @@
 	            </tr>
 	      	{/while}    
 	</table>  			  
-{/if}
+<div id="paginacija"></div>
 
+{/if}
 {if (isset($smarty.session.uloga) && $smarty.session.uloga == 'admin') || (isset($smarty.session.uloga) && $smarty.session.uloga == 'moderator' && $imeTablice == 'natjecaj')}
 <form class="actionForm" method="post" action="dodajUTablicu.php">
 	<input type="hidden" name="imeTablice" value="{$imeTablice}">										

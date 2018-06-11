@@ -7,14 +7,14 @@
 				{elseif !(strpos($foo, 'ext') !== false) && ((strpos($foo, 'vrijeme') !== false) || $foo=='hash_lozinka' || (strpos($foo, 'id_') !== false))}
 					<input type="hidden" name="{$foo}" value="{$red[$stupci[$i++]]}">
 				{else}
-					<label>{$foo}</label>
-					<input type="text" name="{$foo}" value="{$red[$stupci[$i++]]}">
+					<label>{$foo}</label>					
+					<input type="{if (strpos($foo,'otvoren') !== false) || (strpos($foo,'prikazivanje') !== false)}date{else} text {/if}" name="{$foo}" value="{$red[$stupci[$i++]]}">
 				{/if}			
 		{/foreach} 
 		{if isset($ext)}
 		{foreach from=$ext key=k item=foo}
 			<label>{$k}</label>					
-				<select name="{(key($ext))}">		
+				<select name="{$k}">		
 			        {foreach from=$foo  key=k item=item}
 			           <option value="{$k}" selected="selected">{$item}</option>
 			        {/foreach}        

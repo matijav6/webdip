@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2018-05-31 18:07:05
+<?php /* Smarty version Smarty-3.1.18, created on 2018-06-09 16:35:15
          compiled from "predlosci\_azurirajTablicu.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:225025b0aad1c4878b2-09519167%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '01235156929033c50013774922f955905f98c55a' => 
     array (
       0 => 'predlosci\\_azurirajTablicu.tpl',
-      1 => 1527782823,
+      1 => 1528554627,
       2 => 'file',
     ),
   ),
@@ -48,8 +48,8 @@ $_smarty_tpl->tpl_vars['foo']->_loop = true;
 ">
 				<?php } else { ?>
 					<label><?php echo $_smarty_tpl->tpl_vars['foo']->value;?>
-</label>
-					<input type="text" name="<?php echo $_smarty_tpl->tpl_vars['foo']->value;?>
+</label>					
+					<input type="<?php if ((strpos($_smarty_tpl->tpl_vars['foo']->value,'otvoren')!==false)||(strpos($_smarty_tpl->tpl_vars['foo']->value,'prikazivanje')!==false)) {?>date<?php } else { ?> text <?php }?>" name="<?php echo $_smarty_tpl->tpl_vars['foo']->value;?>
 " value="<?php echo $_smarty_tpl->tpl_vars['red']->value[$_smarty_tpl->tpl_vars['stupci']->value[$_smarty_tpl->tpl_vars['i']->value++]];?>
 ">
 				<?php }?>			
@@ -64,7 +64,7 @@ $_smarty_tpl->tpl_vars['foo']->_loop = true;
 ?>
 			<label><?php echo $_smarty_tpl->tpl_vars['k']->value;?>
 </label>					
-				<select name="<?php echo (key($_smarty_tpl->tpl_vars['ext']->value));?>
+				<select name="<?php echo $_smarty_tpl->tpl_vars['k']->value;?>
 ">		
 			        <?php  $_smarty_tpl->tpl_vars['item'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['item']->_loop = false;
  $_smarty_tpl->tpl_vars['k'] = new Smarty_Variable;

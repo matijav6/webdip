@@ -1,12 +1,17 @@
 <?php
-	include './inicijalizacija.php';
+ 	include './inicijalizacija.php';
+    $naslov = "OPG natječaj";    
+   
 
-	$baza = new Baza();
-	$funkcije = new Funkcije();	
-	$baza->spojiDB();
-	$vanjskiKljucevi = array('ext_tip_korisnika' => 'vrsta','ext_korisnik' => 'kor_ime' , 'ext_vrsta_oglasa' => 'vrsta_oglasa' ,'ext_oglas' => 'naziv','ext_kategorija_natjecaj' => 'naziv','ext_moderator' => 'kor_ime','ext_pozicija' => 'stranica');  
-	if(!(strpos('id_tip_korisnika', 'kor') !== false)){
-		echo "string";
-	}
-	//$funkcije->ucitajVrijednosti('id_tip_korisnika','18','korisnik');
+	if(isset($naslov))
+		$smarty->assign('naslov', $naslov);
+	if(isset($h2_naslov))
+		$smarty->assign('h2_naslov', $h2_naslov);
+	$smarty->display('predlosci/_header.tpl');
+    $smarty->display('predlosci/_index.tpl');
+    
+    $smarty->display('predlosci/_footer.tpl');   
+
+ 	$f = new Funkcije();
+ 	$f ->dohvatiPomak();
 ?>

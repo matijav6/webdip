@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2018-05-27 09:59:20
+<?php /* Smarty version Smarty-3.1.18, created on 2018-06-06 18:05:56
          compiled from "predlosci\_poruka.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:4915b095a1fe5ce42-43405036%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8ecd3742a65eaeff5ed23f3a4e9725227355a0d3' => 
     array (
       0 => 'predlosci\\_poruka.tpl',
-      1 => 1527407954,
+      1 => 1528301154,
       2 => 'file',
     ),
   ),
@@ -33,8 +33,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 foreach ($_from as $_smarty_tpl->tpl_vars['foo']->key => $_smarty_tpl->tpl_vars['foo']->value) {
 $_smarty_tpl->tpl_vars['foo']->_loop = true;
 ?>
-               <?php echo $_smarty_tpl->tpl_vars['foo']->value;?>
+                <?php if ($_smarty_tpl->tpl_vars['foo']->value!='neaktivan') {?>
+                    <?php echo $_smarty_tpl->tpl_vars['foo']->value;?>
  <br/>
+                <?php }?>
             <?php } ?>
         <?php }?>          
     <?php if (!empty($_smarty_tpl->tpl_vars['prazno']->value)) {?>

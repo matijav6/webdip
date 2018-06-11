@@ -1,4 +1,4 @@
-<form id="registracija" class="form prijavaRegistracija" method="POST" name="formRegistracija" novalidate style="display:{if $mod eq 'log'}none;{else} grid; {/if}">
+<form id="registracija" class="form prijavaRegistracija" method="POST" name="formRegistracija" novalidate style="display:{if $mod eq 'log'}none;{else} grid; {/if}" onsubmit="return provjeriInput();">
     <p>
         <label for="ime">Ime: </label>
         <input type="text" id="ime" name="ime" size="20" maxlength="30" placeholder="Ime">
@@ -13,16 +13,15 @@
         <label for="lozinka2">Ponovi pozinku: </label>
         <input type="password" id="lozinka2" name="lozinka2" placeholder="lozinka">                       
         <div class="g-recaptcha" data-sitekey="6LerT1wUAAAAABCMwLf1ujFhGgjSnqwc58_PFP0l"></div>
-        <button type="submit" id="submitBtn" name="submitReg" value="Registriraj se">Registriraj se</button>
+        <button type="submit" id="submitBtn" name="submitReg" value="Registriraj se" >Registriraj se</button>
     </p>
 </form>
 
 <form method="POST" id="prijava" class="form" name="formPrijava" novalidate style="display:{if $mod eq 'reg'}none;{else} grid; {/if}">
     <p><label for="korimePrijava">Korisničko ime: </label>
-        <input type="text" id="korimePrijava" name="korisnickoIme" maxlength="20" placeholder="korisničko ime" autofocus="autofocus">
+        <input type="text" id="korimePrijava" name="korisnickoIme" maxlength="20" placeholder="korisničko ime" autofocus="autofocus" value="{if isset($smarty.cookies.korime)}{$smarty.cookies.korime}{/if}" >
         <label for="lozinka">Lozinka: </label>
-        <input type="password" id="lozinka" name="lozinka" placeholder="lozinka">
-        <input type="checkbox" name="zapamtiMe" value="1"> Upamti korisničko ime                        
+        <input type="password" id="lozinka" name="lozinka" placeholder="lozinka">                    
         <input type="reset" class="submit" value=" Inicijaliziraj ">         
         <input type="submit" class="submit" name="submitLog" value="Prijavi se">
         <a href="resetLozinke.php" style="grid-column-start: 2;">Zaboravljena lozinka</a>

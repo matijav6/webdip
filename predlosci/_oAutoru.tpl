@@ -3,7 +3,7 @@
     <ol type="I">
         <li>Matija</li>
         <li>Vuk</li>
-        <li>mvuk@foi.hr</li>
+        <li><a href="mailto:mvuk@foi.hr">mvuk@foi.hr</a></li>
         <li>44048/15-R</li>
     </ol>  
 </div>                

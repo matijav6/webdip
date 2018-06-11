@@ -1,7 +1,9 @@
 <div class="poruka">        
         {if !empty($poruka)}            
             {foreach from=$poruka item=foo}
-               {$foo} <br/>
+                {if $foo != 'neaktivan'}
+                    {$foo} <br/>
+                {/if}
             {/foreach}
         {/if}          
     {if !empty($prazno)}

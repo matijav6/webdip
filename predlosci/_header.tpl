@@ -19,11 +19,15 @@
         <script type="text/javascript" src="js/mvuk_jquery.js"></script>
         <link href="css/mvuk_prilagodbe.css" rel="stylesheet" type="text/css" /> 
     </head>
-    <body>     
+    <body {if isset($smarty.session.izgled_sucelja) && $smarty.session.izgled_sucelja == 'true'}style="background:black;"{/if}>
         <div class="glavniBlok">
             <header>
                 <div class="box1">   
-                    <img src="slike/logo.png">             
+                    {if isset($smarty.session.sakrijLogo) && $smarty.session.sakrijLogo == 'true'}
+                        <img>          
+                    {else}
+                        <img src="slike/logo.png"> 
+                    {/if}                    
                 </div>
                 <div class="box2">
                     {if isset($naslov)}
@@ -45,9 +49,9 @@
                 </div>
             </header>
             <nav>                
-                <ul class="{if $smarty.session.uloga == 'korisnik' || $smarty.session.uloga == 'registriran' || $smarty.session.uloga == 'moderator'} 
+                <ul class="{if isset($smarty.session.uloga) && ($smarty.session.uloga== 'korisnik' || $smarty.session.uloga == 'registriran' || $smarty.session.uloga == 'moderator')} 
                                 korUI       
-                            {elseif $smarty.session.uloga == 'admin'}              
+                            {elseif isset($smarty.session.uloga) && $smarty.session.uloga == 'admin'}              
                                 adminUI
                             {/if}">            
                     {if !isset($smarty.session.korime)} 
@@ -62,12 +66,14 @@
                                 <li><a href="#">Moji oglasi</a></li>
                                  <div class="dropdownLink">                                
                                     <a href="#">Statistika klikova za moje oglase</a>
-                                    <a href="#">Zahtjev za novi oglas</a>
-                                    <a href="#">Zahtjev za blokiranjem oglasa</a>  
+                                    <a href="dodajUTablicu.php?imeTablice=oglas">Kreiraj novi oglas</a>
+                                    <a href="dodajUTablicu.php?imeTablice=zahtjev_za_oglas">Zahtjev za novi oglas</a>
+                                    <a href="dodajUTablicu.php?imeTablice=nepozeljni_oglasi">Zahtjev za blokiranjem oglasa</a>  
                                     {if isset($smarty.session.uloga) && ($smarty.session.uloga == 'moderator' || $smarty.session.uloga == 'admin')}
-                                    <a href="#">Vrste oglasa po pozicijama</a>
-                                    <a href="#">Popis zahtjeva za oglašavanje</a>
-                                    <a href="#">Popis zahtjeva za blokiranje</a>                                   
+                                    <a href="dodajUTablicu.php?imeTablice=vrsta_oglasa_pozicija">Vrste oglasa po pozicijama</a>
+                                    <a href="dodajUTablicu.php?imeTablice=vrsta_oglasa">Kreiranje vrste oglasa</a>
+                                    <a href="dohvatiTablicu.php?tab=zahtjev_za_oglas">Popis zahtjeva za oglašavanje</a>
+                                    <a href="dohvatiTablicu.php?tab=nepozeljni_oglasi">Popis zahtjeva za blokiranje</a>                                   
                                     {/if}
                                     {if isset($smarty.session.uloga) && ($smarty.session.uloga == 'admin')}
                                     <a href="#">Statistika klikova svih oglasa</a>
@@ -80,11 +86,11 @@
                     <div class="dropdownMenu">
                         <li><a href="#">Natječaji</a></li>
                          <div class="dropdownLink">
-                            <a href="#">Prijava na natječaj</a>                            
+                            <a href="dodajUTablicu.php?imeTablice=prijava_natjecaj">Prijava na natječaj</a>                            
                                 <a href="kategorijaNatjecaj.php">Kategorije natječaja</a>
                             {if isset($smarty.session.uloga) && ($smarty.session.uloga == 'moderator' || $smarty.session.uloga == 'admin')}
-                                <a href="#">Popis prijava za natječaj</a>
-                                <a href="#">Kreiranja natječaja</a>
+                                <a href="prijavaNatjecaj.php?tab=prijava_natjecaj">Popis prijava za natječaj</a>
+                                <a href="dodajUTablicu.php?imeTablice=natjecaj">Kreiranja natječaja</a>
                             {/if}                            
                         </div>
                      </div>
@@ -94,7 +100,6 @@
                             <li><a href="#">Postavke</a></li>
                             <div class="dropdownLink">
                                 <a href="#">Pozicije oglasa</a>
-                                <a href="#">Dnevnik rada</a>
                                 <a href="postaviVrijeme.php">Postavi vrijeme</a>
                                 <a href="vrijeme.php">Preuzmi vrijeme</a>
                             </div>

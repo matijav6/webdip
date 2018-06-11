@@ -5,8 +5,8 @@ class Baza {
     const server = "localhost";
     const korisnik = "WebDiP2017x156";
     const lozinka = "admin_AMxF";
-    const baza = "webdip2017x156";
-
+    const baza = "WebDiP2017x156";
+    
     private $veza = null;
     private $greska = '';
 
@@ -43,9 +43,9 @@ class Baza {
         return $rezultat;
     }
 
-    function updateDB($upit, $skripta = '') {                       
-        $rezultat = $this->veza->query($upit);  
-                
+    function updateDB($upit, $skripta = '') {          
+        
+        $rezultat = $this->veza->query($upit);            
         if (isset($this->veza->error) && $this->veza->error != null) {
             //echo "Greška kod upita: {$upit} - " . $this->veza->connect_errno . ", " .
             $this->veza->connect_error;

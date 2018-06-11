@@ -6,9 +6,6 @@ if (!($fp = fopen($url, 'r'))) {
     exit;
 }
 $pomak = fread($fp, filesize($url));
-fclose($fp);
-
-$vrijeme_servera = time();
-$vrijeme_sustava = $vrijeme_servera + ($pomak * 60 * 60);    
-echo date('d.m.Y H:i:s', $vrijeme_sustava);
+fclose($fp);  
+echo date("Y-m-d H:i:s", strtotime("+".$pomak . " hours"));
 ?>

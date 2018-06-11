@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2018-05-31 13:06:17
+<?php /* Smarty version Smarty-3.1.18, created on 2018-06-09 22:55:46
          compiled from "predlosci\_header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:142875b095a1b7536c8-90442926%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'aa320a8c45d783bb42675e4fadb94eed6ccb63e5' => 
     array (
       0 => 'predlosci\\_header.tpl',
-      1 => 1527764774,
+      1 => 1528577741,
       2 => 'file',
     ),
   ),
@@ -48,11 +48,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <script type="text/javascript" src="js/mvuk_jquery.js"></script>
         <link href="css/mvuk_prilagodbe.css" rel="stylesheet" type="text/css" /> 
     </head>
-    <body>     
+    <body <?php if (isset($_SESSION['izgled_sucelja'])&&$_SESSION['izgled_sucelja']=='true') {?>style="background:black;"<?php }?>>
         <div class="glavniBlok">
             <header>
                 <div class="box1">   
-                    <img src="slike/logo.png">             
+                    <?php if (isset($_SESSION['sakrijLogo'])&&$_SESSION['sakrijLogo']=='true') {?>
+                        <img>          
+                    <?php } else { ?>
+                        <img src="slike/logo.png"> 
+                    <?php }?>                    
                 </div>
                 <div class="box2">
                     <?php if (isset($_smarty_tpl->tpl_vars['naslov']->value)) {?>
@@ -76,9 +80,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 </div>
             </header>
             <nav>                
-                <ul class="<?php if ($_SESSION['uloga']=='korisnik'||$_SESSION['uloga']=='registriran'||$_SESSION['uloga']=='moderator') {?> 
+                <ul class="<?php if (isset($_SESSION['uloga'])&&($_SESSION['uloga']=='korisnik'||$_SESSION['uloga']=='registriran'||$_SESSION['uloga']=='moderator')) {?> 
                                 korUI       
-                            <?php } elseif ($_SESSION['uloga']=='admin') {?>              
+                            <?php } elseif (isset($_SESSION['uloga'])&&$_SESSION['uloga']=='admin') {?>              
                                 adminUI
                             <?php }?>">            
                     <?php if (!isset($_SESSION['korime'])) {?> 
@@ -93,12 +97,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                                 <li><a href="#">Moji oglasi</a></li>
                                  <div class="dropdownLink">                                
                                     <a href="#">Statistika klikova za moje oglase</a>
-                                    <a href="#">Zahtjev za novi oglas</a>
-                                    <a href="#">Zahtjev za blokiranjem oglasa</a>  
+                                    <a href="dodajUTablicu.php?imeTablice=oglas">Kreiraj novi oglas</a>
+                                    <a href="dodajUTablicu.php?imeTablice=zahtjev_za_oglas">Zahtjev za novi oglas</a>
+                                    <a href="dodajUTablicu.php?imeTablice=nepozeljni_oglasi">Zahtjev za blokiranjem oglasa</a>  
                                     <?php if (isset($_SESSION['uloga'])&&($_SESSION['uloga']=='moderator'||$_SESSION['uloga']=='admin')) {?>
-                                    <a href="#">Vrste oglasa po pozicijama</a>
-                                    <a href="#">Popis zahtjeva za oglašavanje</a>
-                                    <a href="#">Popis zahtjeva za blokiranje</a>                                   
+                                    <a href="dodajUTablicu.php?imeTablice=vrsta_oglasa_pozicija">Vrste oglasa po pozicijama</a>
+                                    <a href="dodajUTablicu.php?imeTablice=vrsta_oglasa">Kreiranje vrste oglasa</a>
+                                    <a href="dohvatiTablicu.php?tab=zahtjev_za_oglas">Popis zahtjeva za oglašavanje</a>
+                                    <a href="dohvatiTablicu.php?tab=nepozeljni_oglasi">Popis zahtjeva za blokiranje</a>                                   
                                     <?php }?>
                                     <?php if (isset($_SESSION['uloga'])&&($_SESSION['uloga']=='admin')) {?>
                                     <a href="#">Statistika klikova svih oglasa</a>
@@ -111,11 +117,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     <div class="dropdownMenu">
                         <li><a href="#">Natječaji</a></li>
                          <div class="dropdownLink">
-                            <a href="#">Prijava na natječaj</a>                            
+                            <a href="dodajUTablicu.php?imeTablice=prijava_natjecaj">Prijava na natječaj</a>                            
                                 <a href="kategorijaNatjecaj.php">Kategorije natječaja</a>
                             <?php if (isset($_SESSION['uloga'])&&($_SESSION['uloga']=='moderator'||$_SESSION['uloga']=='admin')) {?>
-                                <a href="#">Popis prijava za natječaj</a>
-                                <a href="#">Kreiranja natječaja</a>
+                                <a href="prijavaNatjecaj.php?tab=prijava_natjecaj">Popis prijava za natječaj</a>
+                                <a href="dodajUTablicu.php?imeTablice=natjecaj">Kreiranja natječaja</a>
                             <?php }?>                            
                         </div>
                      </div>
@@ -125,7 +131,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                             <li><a href="#">Postavke</a></li>
                             <div class="dropdownLink">
                                 <a href="#">Pozicije oglasa</a>
-                                <a href="#">Dnevnik rada</a>
                                 <a href="postaviVrijeme.php">Postavi vrijeme</a>
                                 <a href="vrijeme.php">Preuzmi vrijeme</a>
                             </div>

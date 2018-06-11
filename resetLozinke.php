@@ -24,7 +24,7 @@
 		
 		$baza -> updateDB($sql,'prijavaRegistracija.php?mod=log');
 		
-		//mail($to,$subject,$txt,$headers);
+		mail($to,$subject,$txt,$headers);
     }
 	if(isset($naslov))
 		$smarty->assign('naslov', $naslov);

@@ -1,8 +1,13 @@
 <?php
-    $h2_naslov = "Prijavi se!";
+$h2_naslov = "Prijavi se!";
     include './inicijalizacija.php';
     require_once "vanjske_biblioteke/recaptchalib.php";
-
+    $file = basename(__FILE__, '.php');
+    
+    if($file == 'prijavaRegistracija' && $_SERVER["HTTPS"] != "on"){
+        header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
+        exit();
+    }
 	$funkcije = new Funkcije();    	    
     if(isset($_GET['mod'])){
         $mod = $_GET['mod'];
@@ -25,14 +30,13 @@
                 $_POST["g-recaptcha-response"]
             );
         }
-
          if ($response != null && $response->success) {
             $poruka = $funkcije -> registracija();
-          }    	       
+          }              	             
     }
+    
     if(isset($_POST['submitLog'])){
-        $poruka = $funkcije -> prijava();
-       
+        $poruka = $funkcije -> prijava();        
     }
 
     if(isset($naslov))
@@ -49,7 +53,10 @@
         $smarty->display('predlosci/_poruka.tpl');
     }     
     
-    $smarty->display('predlosci/_prijavaRegistracija.tpl'); 
+    if(isset($poruka) && in_array("neaktivan", $poruka[0]))
+        $smarty->display('predlosci/_aktiviraj.tpl'); 
+    else
+        $smarty->display('predlosci/_prijavaRegistracija.tpl'); 
 
     $smarty->display('predlosci/_footer.tpl');
 ?>

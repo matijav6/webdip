@@ -2,7 +2,7 @@ body {
     width: 98vw;
     margin: 0 auto;
     text-align: center;
-    background-image: url(../slike/background.jpg);
+    background: url(../slike/background.jpg);
 }
 .glavniBlok {
     background: rgba(0, 0, 0, 0.34);
@@ -166,10 +166,16 @@ ol {
     text-align: left;
 }
 .CRUDTablice{
-    display: block;
+    display: inline-block;
     overflow-x: scroll;
     max-width: -webkit-fill-available;
     margin: 0 auto;
+}
+th > div{
+
+}
+.sort > button {
+    transform: rotate(90deg);
 }
 td > button >i {    
     padding: 0px 2px 0px 2px;    
@@ -189,11 +195,12 @@ td > button >i {
 }
 .actionForm{
     display: inline-block;
-    text-align: left;
+    text-align: right;
 }
 #showTable{
     display: grid;    
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
 }
 .btn-unos{
         padding: 5px;
@@ -201,7 +208,10 @@ td > button >i {
     border-radius: 15px;
     margin-left: 10px;
 }
-
+.paginacijaGumb{
+    text-align: right;
+    margin: 10px 0 10px 0;
+}
 
 @media (max-width: 420px){
     header, .reklame{

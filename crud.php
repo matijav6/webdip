@@ -2,7 +2,7 @@
 	include './inicijalizacija.php';   
 	$smarty->display('predlosci/_header.tpl');
 	
-	if(isset($_SESSION['korime']) && $_SESSION['korime'] == 'admin'){	
+	if(isset($_SESSION['korime']) && $_SESSION['uloga'] == 'admin'){	
 		$smarty->assign('h2_naslov', 'CRUD operacije');
 		
 		$funkcija =  new Funkcije();
